@@ -1,0 +1,7 @@
+{
+  "name": "sms-chatgpt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Grishon Nganga <grishon.nganga01@gmail.com>",
+  "license": "MIT"
+}
