@@ -26,7 +26,7 @@ app.post('/sendsms', async (req, res)=> {
             message: 'missing required fields'
         })
     }
-    const feedback = await sendSMS(body.numbers);
+    const feedback = await sendSMS(body.numbers, body.message);
     if(feedback) {
         return res.status(200).json({
             message: 'message sent'

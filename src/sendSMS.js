@@ -8,13 +8,12 @@ const africastalking = AfricasTalking({
 });
 
 
-module.exports = async function sendSMS(numbers) {
-    console.log('API KEY: ', process.env.API_KEY, '-', process.env.USERNAME)
+module.exports = async function sendSMS(numbers, message) {
     // TODO: Send message
     try {
     const result= await africastalking.SMS.send({
         to: numbers, 
-        message: 'Hey AT Ninja! Wassup...',
+        message: message,
         from: process.env.SENDER_ID
     });
     console.log(result);
