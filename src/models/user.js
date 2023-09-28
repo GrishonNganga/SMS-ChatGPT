@@ -1,4 +1,4 @@
-const { PrismaClient }  = require('@prisma/client')
+import { PrismaClient }  from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -20,6 +20,6 @@ async function getUserByPhone (phone) {
     return user
 }
 
-module.exports = {
+export {
     createUser, getUserByPhone
 }

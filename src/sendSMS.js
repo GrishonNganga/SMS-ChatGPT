@@ -1,5 +1,5 @@
-const AfricasTalking = require('africastalking');
-require('dotenv').config()
+import AfricasTalking  from 'africastalking'
+import 'dotenv/config'
 
 // TODO: Initialize Africa's Talking
 const africastalking = AfricasTalking({
@@ -8,7 +8,7 @@ const africastalking = AfricasTalking({
 });
 
 
-module.exports = async function sendSMS(numbers, message) {
+export default async function sendSMS(numbers, message) {
     // TODO: Send message
     try {
     const result= await africastalking.SMS.send({

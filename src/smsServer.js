@@ -1,7 +1,16 @@
-const express = require('express')
+import express  from 'express'
+import AfricasTalking  from 'africastalking'
+import { chatGptPrompt} from "./chatgpt/index.js"
+import { createUser, getUserByPhone } from './models/user.js'
+
 const router = express.Router()
-require()
-const { createUser, getUserByPhone } = require('./models/user')
+import 'dotenv/config'
+
+const africastalking = AfricasTalking({
+  apiKey: process.env.API_KEY, 
+  username: process.env.AT_USERNAME
+});
+
 
 router.post('/incoming-messages', async (req, res) => {
     const data = req.body;
@@ -10,9 +19,11 @@ router.post('/incoming-messages', async (req, res) => {
     if(!user) {
       // create
       createUser(req.body.from)
-    }
+    } 
     // chat gpt
-    sendSMS(req.body.from, req.body.text)
+    const response = await chatGptPrompt(req.body.text)
+    console.log(response)
+    sendSMS(req.body.from, response||'something went wrong')
     res.sendStatus(200);
   });
 
@@ -28,9 +39,9 @@ async function sendSMS(number, message) {
     console.log(result);
     return true // success
     } catch(ex) {
-    // console.error(ex);
+    console.error(ex);
     return false // failed
     } 
 };
 
-module.exports = router
+export default router

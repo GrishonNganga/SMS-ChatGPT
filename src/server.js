@@ -1,8 +1,8 @@
-const express = require('express')
-const http = require('http')
+import express  from 'express'
+import http from 'http'
 const app = express()
-const sendSMS = require('./sendSMS.js');
-const smsServerRouter = require('./smsServer.js');
+import sendSMS from './sendSMS.js'
+import smsServerRouter  from './smsServer.js'
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
